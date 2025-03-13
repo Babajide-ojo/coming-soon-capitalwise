@@ -2,42 +2,100 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Coming Soon Page"
-    />
-    <!-- <link rel="apple-touch-icon" href="logo192.png" /> -->
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Coming Soon Page | arkn98</title>
+    <meta name="theme-color" content="#93cd58" />
+    <meta name="description" content="Anticipation for Our New and Improved Website" />
+    <title>Something Big is Coming | Capitalwise Dynamic Pay Limited</title>
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      body {
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #0f0f0f, #282828);
+        color: #fff;
+        text-align: center;
+        flex-direction: column;
+        padding: 20px;
+      }
+     body > h1 {
+        font-size: 4.5rem;
+        margin-bottom: 20px;
+        color: #93cd58;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+     body > p {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        max-width: 800px;
+        line-height: 40px;
+        animation: slideIn 1.5s ease-in-out;
+      }
+      #countdown {
+        font-size: 3rem;
+        font-weight: bold;
+        background: rgba(147, 205, 88, 0.2);
+        padding: 20px 30px;
+        border-radius: 15px;
+        display: inline-block;
+        margin-top: 20px;
+        color: #93cd58;
+        animation: pulse 2s infinite;
+      }
+      .tagline {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        font-style: italic;
+        opacity: 0.8;
+        color: #93cd58;
+        animation: fadeIn 2s ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <h1>Something Big is Coming!</h1>
+    <p>Capitalwise Dynamic Pay Limited is rebuilding her website to bring you a better, faster, and more exciting experience. Stay in the loop and be the first to explore it!</p>
+    <div id="countdown"></div>
+    <p class="tagline">A new era of innovation starts soon...</p>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <script>
+      function startCountdown(durationInSeconds) {
+        const countdownElement = document.getElementById("countdown");
+        
+        function updateCountdown() {
+          let days = Math.floor(durationInSeconds / (3600 * 24));
+          let hours = Math.floor((durationInSeconds % (3600 * 24)) / 3600);
+          let minutes = Math.floor((durationInSeconds % 3600) / 60);
+          let seconds = durationInSeconds % 60;
+          
+          countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          
+          if (durationInSeconds > 0) {
+            durationInSeconds--;
+            setTimeout(updateCountdown, 1000);
+          } else {
+            countdownElement.innerHTML = "The wait is over!";
+          }
+        }
+        updateCountdown();
+      }
+      
+      startCountdown(7 * 24 * 60 * 60); // Countdown for 7 days
+    </script>
   </body>
 </html>
